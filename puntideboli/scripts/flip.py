@@ -5,5 +5,6 @@ from mitmproxy import http
 
 
 def response(flow: http.HTTPFlow) -> None:
-    reflector = b"<style>img, background-url {transform: rotate(180deg);}</style></head>"
-    flow.response.content = flow.response.content.replace(b"</head>", reflector)
+    if flow.request.pretty_host not in ['www.instagram.com', 'www.corriere.it']:
+        reflector = b"<style>img, background-url {transform: rotate(180deg);}</style></head>"
+        flow.response.content = flow.response.content.replace(b"</head>", reflector)

