@@ -27,5 +27,5 @@ def response(flow: http.HTTPFlow) -> None:
             <a class="mbl_summaryLink" href="#"> Il gruppo di Venezia sferra un attacco al quartier generale del Dipartimento della Difesa degli Stati Uniti d'America. Certi i legami con la Russia. </a>
         </p>
     </div>
-</article>'''
-        flow.response.content = flow.response.content.replace(b'''<!-- e5242b4e-bd16-11e8-a3f5-5f1737050272 -->''', reflector)
+</article> <article '''
+        flow.response.content = flow.response.content.replace(b'''<article ''', reflector)

@@ -3,6 +3,7 @@ This script reflects all content passing through the proxy.
 """
 
 import re
+import random
 import urllib
 from urllib.parse import unquote
 from mitmproxy import http

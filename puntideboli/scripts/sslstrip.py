@@ -13,6 +13,9 @@ secure_hosts: typing.Set[str] = set()
 
 
 def request(flow: http.HTTPFlow) -> None:
+    if flow.request.pretty_host == 'minimalblue.com' or flow.request.pretty_host == 'wwww.minimalblue.com':
+        return
+        
     flow.request.headers.pop('If-Modified-Since', None)
     flow.request.headers.pop('Cache-Control', None)
 
@@ -31,6 +34,9 @@ def request(flow: http.HTTPFlow) -> None:
 
 
 def response(flow: http.HTTPFlow) -> None:
+    if flow.request.pretty_host == 'minimalblue.com' or flow.request.pretty_host == 'wwww.minimalblue.com':
+        return
+
     flow.response.headers.pop('Strict-Transport-Security', None)
     flow.response.headers.pop('Public-Key-Pins', None)
 
