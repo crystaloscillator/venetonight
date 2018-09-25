@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<head>
+  <title>Ajax Polling</title>
+  <meta charset="UTF-8" />
+</head>
+<body>
+  <p>Passwords: <span class="status"></span></p>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script>
+    (function() {
+      var status = $('.status'),
+        poll = function() {
+          $.ajax({
+            url: 'pwd',
+            dataType: 'json',
+            type: 'get',
+            success: function(data) { // check if available
+              status.text('');
+              if ( data ) { // get and check data value
+                status.text(data[0]); // get and print data string
+                // clearInterval(pollInterval); // optional: stop poll function
+              }
+            },
+            error: function() { // error logging
+              console.log('Error!');
+            }
+          });
+        },
+        pollInterval = setInterval(function() { // run function every 2000 ms
+          poll();
+          }, 2000);
+        poll(); // also run function on init
+    })();
+  </script>
+</body>
+</html>
