@@ -19,9 +19,13 @@ Disable ICMP redirects
 
 Apply firewall rules to enable transparent proxy (consider using appropriate names for the network devices)
 
-	# iptables -t nat -I PREROUTING -i wlp2s0 -p tcp --dport 80 -j REDIRECT --to-port 8080
-	# iptables -t nat -I PREROUTING -i wlp2s0 -p tcp --dport 443 -j REDIRECT --to-port 8080
-	# iptables -t nat -I POSTROUTING -o enx00e04c68a1d8 -j MASQUERADE
+	iptables -t nat -I PREROUTING -i wlp2s0 -p tcp --dport 80 -j REDIRECT --to-port 8080
+	iptables -t nat -I PREROUTING -i wlp2s0 -p tcp --dport 443 -j REDIRECT --to-port 8080
+	iptables -t nat -I POSTROUTING -o enx00e04c68a1d8 -j MASQUERADE
+
+Then allow minimalblue.com
+
+	iptables -t nat -I PREROUTING -i wlp2s0 -p tcp --dport 443 -d 37.187.99.217 -j ACCEPT
 
 
 ### Proxy

@@ -1,37 +1,48 @@
-<!DOCTYPE html>
-<head>
-  <title>Ajax Polling</title>
-  <meta charset="UTF-8" />
-</head>
-<body>
-  <p>Passwords: <span class="status"></span></p>
-
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <script>
-    (function() {
-      var status = $('.status'),
-        poll = function() {
-          $.ajax({
-            url: 'pwd',
-            dataType: 'json',
-            type: 'get',
-            success: function(data) { // check if available
-              status.text('');
-              if ( data ) { // get and check data value
-                status.text(data[0]); // get and print data string
-                // clearInterval(pollInterval); // optional: stop poll function
-              }
-            },
-            error: function() { // error logging
-              console.log('Error!');
-            }
-          });
-        },
-        pollInterval = setInterval(function() { // run function every 2000 ms
-          poll();
-          }, 2000);
-        poll(); // also run function on init
-    })();
-  </script>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Punti Deboli">
+    <meta name="author" content="Marco Squarcina">
+    <title>Punti Deboli</title>
+    <link href="{{ url_for('static', filename='css/open-iconic-bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap-solar.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/mm.css') }}" rel="stylesheet">
+  </head>
+  <body class="text-center">
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <main role="main" class="inner cover" id="main">
+        <div class="row">
+          <div class="col-lg-6">
+            <h1 class="display-1">Punti Deboli</h1>
+            <p class="lead text-justify">Pensi che le tue operazioni online siano davvero sicure? Sai che i siti web sui quali navighi tutti i giorni hanno dei punti deboli che possono essere usati dagli attaccanti per alterare e rubare i tuoi dati? Connettiti alla nostra rete con il tuo smartphone, visita la pagina riportata qui sotto e scegli un sito tra quelli proposti: ti mostreremo cos'è possibile fare quando c'è un attaccante <b>nel mezzo</b>... <span class="oi oi-lock-unlocked" title="lock-unlocked" aria-hidden="true"></span></p>
+          </div>
+          <div class="col-lg-6">
+            <h1 class="display-1">Weak Points</h1>
+            <p class="lead text-justify">Do you feel secure while browsing online? Do you know that many widespread websites have some weaknesses that can be exploited by attackers to modify and steal your private data? Use your smarthpone to connect to our access point, visit the suggested webpage and choose one of the listed websites: we'll show you what it's possible to do when hackers are <b>in the middle</b>... <span class="oi oi-lock-unlocked" title="lock-unlocked" aria-hidden="true"></span></p>
+          </div>
+        </div>
+        <div class="row info">
+          <div class="col">
+            <h2 class="display-4"><span class="oi oi-wifi" title="wifi" aria-hidden="true"></span> PuntiDeboli (password: <code>venetonight</code>)</h2>
+            <h2 class="display-4"><span class="oi oi-cloud" title="cloud" aria-hidden="true"></span> <a href="https://minimalblue.com/vn/">https://minimalblue.com/vn/</a></h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div id="status" class="lead text-center"></div>
+          </div>
+        </div>
+      </main>
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>2018 // a <code>c00kies</code> production</p>
+        </div>
+      </footer>
+    </div>
+    <script type=text/javascript src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script type=text/javascript src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script type=text/javascript src="{{ url_for('static', filename='js/mm.js') }}"></script>
+  </body>
 </html>
