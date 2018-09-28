@@ -8,7 +8,6 @@ function poll() {
       			$("#status").empty();
       			data.forEach(function(creds) {
     				aux = $("#status").append('<div class="alert alert-danger" role="alert">' + creds[0] + " / " + creds[1] + '</div>');
-    				// aux.text(creds[0] + " / " + creds[1]);
     			})
       		}
     	},
